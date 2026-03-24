@@ -515,25 +515,25 @@ function GameBoard({ settings, onBackToSettings }) {
         </div>
 
         {/* Right Side - Control Buttons */}
-        <div className="flex flex-col gap-4 mt-12">
+        <div className="flex flex-col gap-4 mt-20">
           <button
             data-testid="restart-game-btn"
             onClick={handleRestartGame}
-            className="bg-[#3a3a3a] text-white px-8 py-4 rounded-xl font-bold btn-3d text-lg whitespace-nowrap"
+            className="bg-[#2A2A2A] text-white px-8 py-4 rounded-xl font-bold btn-3d text-lg whitespace-nowrap"
           >
             RESTART GAME
           </button>
           <button
             data-testid="reset-board-btn"
             onClick={handleResetBoard}
-            className="bg-[#3a3a3a] text-white px-8 py-4 rounded-xl font-bold btn-3d text-lg whitespace-nowrap"
+            className="bg-[#2A2A2A] text-white px-8 py-4 rounded-xl font-bold btn-3d text-lg whitespace-nowrap"
           >
             RESET BOARD
           </button>
           <button
             data-testid="settings-btn"
             onClick={onBackToSettings}
-            className="bg-[#3a3a3a] text-white px-8 py-4 rounded-xl font-bold btn-3d text-lg whitespace-nowrap"
+            className="bg-[#2A2A2A] text-white px-8 py-4 rounded-xl font-bold btn-3d text-lg whitespace-nowrap"
           >
             SETTINGS
           </button>
