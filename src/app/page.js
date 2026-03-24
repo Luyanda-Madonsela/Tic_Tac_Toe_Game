@@ -515,7 +515,7 @@ function GameBoard({ settings, onBackToSettings }) {
         </div>
 
         {/* Right Side - Control Buttons */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 mt-12">
           <button
             data-testid="restart-game-btn"
             onClick={handleRestartGame}
