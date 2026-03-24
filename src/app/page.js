@@ -237,7 +237,7 @@ function SettingsPage({ onStartGame, initialSettings }) {
           onClick={handleSave}
           className="bg-[#3a3a3a] text-white px-16 py-3 rounded-lg text-xl font-bold btn-3d mt-4"
         >
-          SAVE
+          START GAME
         </button>
       </div>
 
