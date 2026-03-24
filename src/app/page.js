@@ -368,9 +368,9 @@ function GameBoard({ settings, onBackToSettings }) {
       </div>
 
       {/* Main Game Area */}
-      <div className="flex-1 flex justify-center items-start gap-8 px-8 pb-40">
+      <div className="flex-1 relative px-8 pb-40">
         {/* Left Side - Round Winner & Score Board */}
-        <div className="flex flex-col items-start">
+        <div className="absolute left-8 top-0 flex flex-col items-start">
           {/* Round Winner Announcement */}
           {roundWinner && roundWinner !== 'draw' && (
             <p 
@@ -409,7 +409,7 @@ function GameBoard({ settings, onBackToSettings }) {
         </div>
 
         {/* Center - Game Grid */}
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center mx-auto">
           <div className="grid grid-cols-3 gap-2" data-testid="game-grid">
             {board.map((cell, index) => {
               const isWinningCell = winningLine?.includes(index);
@@ -471,7 +471,7 @@ function GameBoard({ settings, onBackToSettings }) {
         </div>
 
         {/* Right Side - Control Buttons */}
-        <div className="flex flex-col gap-4">
+        <div className="absolute right-8 top-0 flex flex-col gap-4">
           <button
             data-testid="restart-game-btn"
             onClick={handleRestartGame}
