@@ -366,18 +366,20 @@ function GameBoard({ settings, onBackToSettings }) {
       <div className="flex-1 flex justify-center items-start gap-6 px-8 pb-40 pr-[200px]">
         {/* Left Side - Round Winner & Score Board */}
         <div className="flex flex-col items-start">
-          {/* Round Winner Announcement */}
-          {roundWinner && roundWinner !== 'draw' && (
-            <p 
-              className="text-3xl text-green-500 mb-6 italic"
-              style={{ fontFamily: 'var(--font-joti-one)' }}
-              data-testid="round-winner"
-            >
-              {currentRound >= settings.maxRounds 
-                ? 'GAME OVER!' 
-                : `${roundWinner === 'X' ? settings.playerXName : settings.playerOName} wins this round!`}
-            </p>
-          )}
+          {/* Turn Indicator / Round Winner Announcement */}
+          <p 
+            className="text-3xl text-green-500 mb-6 italic"
+            style={{ fontFamily: 'var(--font-joti-one)' }}
+            data-testid="turn-indicator"
+          >
+            {roundWinner 
+              ? (roundWinner === 'draw' 
+                  ? "It's a Draw!" 
+                  : (currentRound >= settings.maxRounds 
+                      ? 'GAME OVER!' 
+                      : `${roundWinner === 'X' ? settings.playerXName : settings.playerOName} wins this round!`))
+              : `${currentPlayerName}'s turn`}
+          </p>
 
           {/* Score Board */}
           <div 
