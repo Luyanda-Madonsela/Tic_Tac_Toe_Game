@@ -405,6 +405,35 @@ function GameBoard({ settings, onBackToSettings }) {
               </p>
             </div>
           </div>
+
+          {/* Final Game Result - Below Scoreboard */}
+          {gameResult && (
+            <motion.div 
+              className="mt-6 text-center" 
+              data-testid="game-result"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ 
+                opacity: [1, 0.3, 1, 0.3, 1],
+                scale: 1
+              }}
+              transition={{ 
+                opacity: { duration: 1.5, times: [0, 0.25, 0.5, 0.75, 1] },
+                scale: { duration: 0.3 }
+              }}
+            >
+              <p 
+                className="text-3xl font-bold mb-3 text-red-500"
+                style={{ fontFamily: 'var(--font-joti-one)' }}
+              >
+                {gameResult === 'draw' 
+                  ? "It's a Tie!" 
+                  : `${gameResult === 'X' ? settings.playerXName : settings.playerOName} Wins!`}
+              </p>
+              <p className="text-xl text-red-500">
+                Final Score: {settings.playerXName} {scores.X} - {scores.O} {settings.playerOName}
+              </p>
+            </motion.div>
+          )}
         </div>
 
         {/* Center - Game Grid */}
@@ -483,34 +512,21 @@ function GameBoard({ settings, onBackToSettings }) {
             <button
               data-testid="play-again-btn"
               onClick={handlePlayAgain}
-              className="mt-8 bg-[#3a3a3a] text-white px-12 py-4 rounded-xl text-xl font-bold btn-3d"
+              className="mt-8 bg-[#2A2A2A] text-white px-12 py-4 rounded-xl text-xl font-bold btn-3d"
             >
               {currentRound >= settings.maxRounds ? 'VIEW RESULTS' : 'NEXT ROUND'}
             </button>
           )}
 
-          {/* Final Game Result */}
+          {/* New Game Button - shown after game ends */}
           {gameResult && (
-            <div className="mt-8 text-center" data-testid="game-result">
-              <p 
-                className="text-4xl font-bold mb-6"
-                style={{ fontFamily: 'var(--font-joti-one)' }}
-              >
-                {gameResult === 'draw' 
-                  ? "Game Over - It's a Tie!" 
-                  : `${gameResult === 'X' ? settings.playerXName : settings.playerOName} Wins the Game!`}
-              </p>
-              <p className="text-2xl mb-6">
-                Final Score: {settings.playerXName} {scores.X} - {scores.O} {settings.playerOName}
-              </p>
-              <button
-                data-testid="new-game-btn"
-                onClick={handleRestartGame}
-                className="bg-[#3a3a3a] text-white px-12 py-4 rounded-xl text-xl font-bold btn-3d"
-              >
-                NEW GAME
-              </button>
-            </div>
+            <button
+              data-testid="new-game-btn"
+              onClick={handleRestartGame}
+              className="mt-8 bg-[#2A2A2A] text-white px-12 py-4 rounded-xl text-xl font-bold btn-3d"
+            >
+              NEW GAME
+            </button>
           )}
         </div>
 
