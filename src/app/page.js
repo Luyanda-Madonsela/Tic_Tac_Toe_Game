@@ -568,13 +568,13 @@ export default function Home() {
   const [gameStarted, setGameStarted] = useState(false);
   const [settings, setSettings] = useState(null);
 
-  // Load settings from localStorage on mount
+  // Load settings from localStorage on mount (only load settings, don't auto-start game)
   useEffect(() => {
     const savedSettings = localStorage.getItem('ticTacToeSettings');
     if (savedSettings) {
       const parsed = JSON.parse(savedSettings);
       setSettings(parsed);
-      setGameStarted(true);
+      // Don't auto-start - always show settings page first
     }
   }, []);
 
