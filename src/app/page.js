@@ -256,6 +256,7 @@ function GameBoard({ settings, onBackToSettings }) {
   const [gameResult, setGameResult] = useState(null);
   const [winningLine, setWinningLine] = useState(null);
   const [roundWinner, setRoundWinner] = useState(null);
+  const [gameKey, setGameKey] = useState(0); // Used to force re-render and reset animations
 
   // Load scores from localStorage
   useEffect(() => {
@@ -332,6 +333,7 @@ function GameBoard({ settings, onBackToSettings }) {
     setGameResult(null);
     setRoundWinner(null);
     setWinningLine(null);
+    setGameKey(prev => prev + 1); // Force re-render to clear animations
     localStorage.removeItem('ticTacToeScores');
     localStorage.removeItem('ticTacToeRound');
   };
@@ -341,6 +343,7 @@ function GameBoard({ settings, onBackToSettings }) {
     setIsXNext(false);
     setRoundWinner(null);
     setWinningLine(null);
+    setGameKey(prev => prev + 1); // Force re-render to clear animations
   };
 
   const currentPlayer = isXNext ? 'X' : 'O';
@@ -402,12 +405,12 @@ function GameBoard({ settings, onBackToSettings }) {
 
         {/* Center - Game Grid */}
         <div className="flex flex-col items-center">
-          <div className="grid grid-cols-3 gap-2" data-testid="game-grid" key={`grid-${currentRound}`}>
+          <div className="grid grid-cols-3 gap-2" data-testid="game-grid" key={`grid-${gameKey}-${currentRound}`}>
             {board.map((cell, index) => {
               const isWinningCell = winningLine?.includes(index);
               return (
                 <motion.button
-                  key={`cell-${index}-${currentRound}`}
+                  key={`cell-${index}-${gameKey}-${currentRound}`}
                   data-testid={`cell-${index}`}
                   onClick={() => handleCellClick(index)}
                   disabled={!!cell || !!roundWinner}
@@ -438,7 +441,7 @@ function GameBoard({ settings, onBackToSettings }) {
                   <AnimatePresence mode="wait">
                     {cell && (
                       <motion.span
-                        key={`symbol-${cell}-${index}-${currentRound}`}
+                        key={`symbol-${cell}-${index}-${gameKey}-${currentRound}`}
                         initial={{ scale: 0, rotate: -180 }}
                         animate={isWinningCell ? {
                           scale: [1, 1.2, 1],
