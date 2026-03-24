@@ -373,7 +373,9 @@ function GameBoard({ settings, onBackToSettings }) {
               style={{ fontFamily: 'var(--font-joti-one)' }}
               data-testid="round-winner"
             >
-              {roundWinner === 'X' ? settings.playerXName : settings.playerOName} wins this round!
+              {currentRound >= settings.maxRounds 
+                ? 'GAME OVER!' 
+                : `${roundWinner === 'X' ? settings.playerXName : settings.playerOName} wins this round!`}
             </p>
           )}
 
