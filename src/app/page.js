@@ -402,12 +402,12 @@ function GameBoard({ settings, onBackToSettings }) {
 
         {/* Center - Game Grid */}
         <div className="flex flex-col items-center">
-          <div className="grid grid-cols-3 gap-2" data-testid="game-grid">
+          <div className="grid grid-cols-3 gap-2" data-testid="game-grid" key={`grid-${currentRound}`}>
             {board.map((cell, index) => {
               const isWinningCell = winningLine?.includes(index);
               return (
                 <motion.button
-                  key={index}
+                  key={`cell-${index}-${currentRound}`}
                   data-testid={`cell-${index}`}
                   onClick={() => handleCellClick(index)}
                   disabled={!!cell || !!roundWinner}
@@ -428,17 +428,17 @@ function GameBoard({ settings, onBackToSettings }) {
                       "0 0 20px 10px rgba(34, 197, 94, 0.5)",
                       "0 0 0 0 rgba(34, 197, 94, 0)"
                     ]
-                  } : {}}
+                  } : { scale: 1, boxShadow: "none" }}
                   transition={isWinningCell ? {
                     duration: 0.8,
                     repeat: Infinity,
                     ease: "easeInOut"
-                  } : {}}
+                  } : { duration: 0.2 }}
                 >
                   <AnimatePresence mode="wait">
                     {cell && (
                       <motion.span
-                        key={cell}
+                        key={`symbol-${cell}-${index}-${currentRound}`}
                         initial={{ scale: 0, rotate: -180 }}
                         animate={isWinningCell ? {
                           scale: [1, 1.2, 1],
