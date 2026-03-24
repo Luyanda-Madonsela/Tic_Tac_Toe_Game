@@ -1,7 +1,11 @@
-import { Inter } from "next/font/google";
+import { Joti_One } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const jotiOne = Joti_One({ 
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-joti-one"
+});
 
 export const metadata = {
   title: "Tic-Tac-Toe Game",
@@ -11,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${jotiOne.variable}`}>{children}</body>
     </html>
   );
 }
