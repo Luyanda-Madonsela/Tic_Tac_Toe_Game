@@ -349,7 +349,7 @@ function GameBoard({ settings, onBackToSettings }) {
   return (
     <div className="min-h-screen bg-white flex flex-col relative" data-testid="game-board">
       {/* Title */}
-      <div className="pt-8 pb-4 text-center">
+      <div className="pt-8 pb-12 text-center">
         <h1 
           className="text-5xl md:text-7xl font-bold tracking-wide text-white title-shadow"
           style={{ fontFamily: 'var(--font-joti-one)' }}
