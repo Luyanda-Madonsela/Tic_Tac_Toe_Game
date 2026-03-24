@@ -126,7 +126,7 @@ function SettingsPage({ onStartGame, initialSettings }) {
       {/* Title */}
       <div className="pt-12 pb-8 text-center">
         <h1 
-          className="text-5xl md:text-6xl font-bold tracking-wide text-white title-shadow"
+          className="text-5xl md:text-6xl font-bold tracking-wide text-black"
           style={{ fontFamily: 'var(--font-joti-one)' }}
         >
           GAME SETTINGS
@@ -351,7 +351,7 @@ function GameBoard({ settings, onBackToSettings }) {
       {/* Title */}
       <div className="pt-8 pb-12 text-center">
         <h1 
-          className="text-5xl md:text-7xl font-bold tracking-wide text-white title-shadow"
+          className="text-5xl md:text-7xl font-bold tracking-wide text-black"
           style={{ fontFamily: 'var(--font-joti-one)' }}
         >
           Tic-Tac-Toe
