@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Game modes
 const MODES = {
@@ -405,7 +406,7 @@ function GameBoard({ settings, onBackToSettings }) {
             {board.map((cell, index) => {
               const isWinningCell = winningLine?.includes(index);
               return (
-                <button
+                <motion.button
                   key={index}
                   data-testid={`cell-${index}`}
                   onClick={() => handleCellClick(index)}
@@ -418,9 +419,27 @@ function GameBoard({ settings, onBackToSettings }) {
                     ${isWinningCell ? 'bg-green-100' : 'bg-white'}
                   `}
                   style={{ fontFamily: 'var(--font-joti-one)' }}
+                  whileTap={{ scale: 0.95 }}
+                  whileHover={!cell && !roundWinner ? { scale: 1.05 } : {}}
                 >
-                  {cell}
-                </button>
+                  <AnimatePresence mode="wait">
+                    {cell && (
+                      <motion.span
+                        key={cell}
+                        initial={{ scale: 0, rotate: -180 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        exit={{ scale: 0, rotate: 180 }}
+                        transition={{ 
+                          type: "spring", 
+                          stiffness: 300, 
+                          damping: 20 
+                        }}
+                      >
+                        {cell}
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </motion.button>
               );
             })}
           </div>
