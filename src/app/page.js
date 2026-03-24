@@ -317,11 +317,12 @@ function GameBoard({ settings, onBackToSettings }) {
       // Game over - show final result
       setGameResult(scores.X > scores.O ? 'X' : scores.O > scores.X ? 'O' : 'draw');
     } else {
+      const nextRound = currentRound + 1;
       setBoard(Array(9).fill(null));
-      setIsXNext(false); // O always starts
+      setIsXNext(nextRound % 2 === 0); // Alternate: odd rounds O starts, even rounds X starts
       setRoundWinner(null);
       setWinningLine(null);
-      setCurrentRound(prev => prev + 1);
+      setCurrentRound(nextRound);
     }
   };
 
@@ -329,7 +330,7 @@ function GameBoard({ settings, onBackToSettings }) {
     setScores({ X: 0, O: 0 });
     setCurrentRound(1);
     setBoard(Array(9).fill(null));
-    setIsXNext(false);
+    setIsXNext(false); // Round 1: O starts first
     setGameResult(null);
     setRoundWinner(null);
     setWinningLine(null);
@@ -340,7 +341,7 @@ function GameBoard({ settings, onBackToSettings }) {
 
   const handleResetBoard = () => {
     setBoard(Array(9).fill(null));
-    setIsXNext(false);
+    setIsXNext(currentRound % 2 === 0); // Keep the same starting player for current round
     setRoundWinner(null);
     setWinningLine(null);
     setGameKey(prev => prev + 1); // Force re-render to clear animations
