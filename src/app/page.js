@@ -374,7 +374,7 @@ function GameBoard({ settings, onBackToSettings }) {
           {/* Round Winner Announcement */}
           {roundWinner && roundWinner !== 'draw' && (
             <p 
-              className="text-2xl text-green-500 mb-4 italic"
+              className="text-3xl text-green-500 mb-6 italic"
               style={{ fontFamily: 'var(--font-joti-one)' }}
               data-testid="round-winner"
             >
@@ -384,24 +384,24 @@ function GameBoard({ settings, onBackToSettings }) {
 
           {/* Score Board */}
           <div 
-            className="bg-[#2A2A2A] text-white p-6 rounded-2xl scoreboard-shadow min-w-[280px]"
+            className="bg-[#2A2A2A] text-white p-8 rounded-3xl scoreboard-shadow min-w-[380px]"
             data-testid="score-board"
           >
             <h2 
-              className="text-2xl font-bold mb-4 text-center"
+              className="text-4xl font-bold mb-6 text-center"
               style={{ fontFamily: 'var(--font-joti-one)' }}
             >
               SCORE BOARD
             </h2>
             
-            <div className="space-y-2 text-lg">
+            <div className="space-y-3 text-2xl">
               <p>
                 Player X: <span className="text-green-400 font-bold">{scores.X}</span>
               </p>
               <p>
                 Player O: <span className="text-green-400 font-bold">{scores.O}</span>
               </p>
-              <p className="mt-4">
+              <p className="mt-6">
                 Rounds left: <span className="text-red-400 font-bold">{roundsLeft}</span> / {settings.maxRounds}
               </p>
             </div>
@@ -410,7 +410,7 @@ function GameBoard({ settings, onBackToSettings }) {
 
         {/* Center - Game Grid */}
         <div className="flex flex-col items-center">
-          <div className="grid grid-cols-3 gap-1" data-testid="game-grid">
+          <div className="grid grid-cols-3 gap-2" data-testid="game-grid">
             {board.map((cell, index) => {
               const isWinningCell = winningLine?.includes(index);
               return (
@@ -419,7 +419,7 @@ function GameBoard({ settings, onBackToSettings }) {
                   data-testid={`cell-${index}`}
                   onClick={() => handleCellClick(index)}
                   disabled={!!cell || !!roundWinner}
-                  className={`w-24 h-24 md:w-28 md:h-28 border-4 rounded-lg text-5xl md:text-6xl font-bold flex items-center justify-center game-cell
+                  className={`w-32 h-32 md:w-40 md:h-40 border-[6px] rounded-xl text-6xl md:text-8xl font-bold flex items-center justify-center game-cell
                     ${cell ? 'border-green-500' : 'border-black'}
                     ${cell === 'X' ? 'text-black' : ''}
                     ${cell === 'O' ? 'text-black' : ''}
@@ -439,7 +439,7 @@ function GameBoard({ settings, onBackToSettings }) {
             <button
               data-testid="play-again-btn"
               onClick={handlePlayAgain}
-              className="mt-6 bg-[#3a3a3a] text-white px-8 py-3 rounded-lg text-lg font-bold btn-3d"
+              className="mt-8 bg-[#3a3a3a] text-white px-12 py-4 rounded-xl text-xl font-bold btn-3d"
             >
               {currentRound >= settings.maxRounds ? 'VIEW RESULTS' : 'NEXT ROUND'}
             </button>
@@ -447,22 +447,22 @@ function GameBoard({ settings, onBackToSettings }) {
 
           {/* Final Game Result */}
           {gameResult && (
-            <div className="mt-6 text-center" data-testid="game-result">
+            <div className="mt-8 text-center" data-testid="game-result">
               <p 
-                className="text-3xl font-bold mb-4"
+                className="text-4xl font-bold mb-6"
                 style={{ fontFamily: 'var(--font-joti-one)' }}
               >
                 {gameResult === 'draw' 
                   ? "Game Over - It's a Tie!" 
                   : `${gameResult === 'X' ? settings.playerXName : settings.playerOName} Wins the Game!`}
               </p>
-              <p className="text-xl mb-4">
+              <p className="text-2xl mb-6">
                 Final Score: {settings.playerXName} {scores.X} - {scores.O} {settings.playerOName}
               </p>
               <button
                 data-testid="new-game-btn"
                 onClick={handleRestartGame}
-                className="bg-[#3a3a3a] text-white px-8 py-3 rounded-lg text-lg font-bold btn-3d"
+                className="bg-[#3a3a3a] text-white px-12 py-4 rounded-xl text-xl font-bold btn-3d"
               >
                 NEW GAME
               </button>
@@ -471,25 +471,25 @@ function GameBoard({ settings, onBackToSettings }) {
         </div>
 
         {/* Right Side - Control Buttons */}
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4">
           <button
             data-testid="restart-game-btn"
             onClick={handleRestartGame}
-            className="bg-[#3a3a3a] text-white px-6 py-3 rounded-lg font-bold btn-3d text-sm whitespace-nowrap"
+            className="bg-[#3a3a3a] text-white px-8 py-4 rounded-xl font-bold btn-3d text-lg whitespace-nowrap"
           >
             RESTART GAME
           </button>
           <button
             data-testid="reset-board-btn"
             onClick={handleResetBoard}
-            className="bg-[#3a3a3a] text-white px-6 py-3 rounded-lg font-bold btn-3d text-sm whitespace-nowrap"
+            className="bg-[#3a3a3a] text-white px-8 py-4 rounded-xl font-bold btn-3d text-lg whitespace-nowrap"
           >
             RESET BOARD
           </button>
           <button
             data-testid="settings-btn"
             onClick={onBackToSettings}
-            className="bg-[#3a3a3a] text-white px-6 py-3 rounded-lg font-bold btn-3d text-sm whitespace-nowrap"
+            className="bg-[#3a3a3a] text-white px-8 py-4 rounded-xl font-bold btn-3d text-lg whitespace-nowrap"
           >
             SETTINGS
           </button>
