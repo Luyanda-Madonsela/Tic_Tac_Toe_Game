@@ -7,11 +7,15 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: var(--font-joti-one), cursive;
   background: white;
   margin: 0;
   padding: 0;
   min-height: 100vh;
+}
+
+* {
+  font-family: var(--font-joti-one), cursive;
 }
 
 /* Joti One font class */

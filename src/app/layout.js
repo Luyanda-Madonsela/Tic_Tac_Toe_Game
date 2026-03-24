@@ -15,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${jotiOne.variable}`}>{children}</body>
+      <body className={`${jotiOne.variable}`} style={{ fontFamily: 'var(--font-joti-one)' }}>{children}</body>
     </html>
   );
 }
