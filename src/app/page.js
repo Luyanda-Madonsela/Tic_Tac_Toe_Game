@@ -369,7 +369,7 @@ function GameBoard({ settings, onBackToSettings }) {
               style={{ fontFamily: 'var(--font-joti-one)' }}
               data-testid="round-winner"
             >
-              Player {roundWinner} wins this round!
+              {roundWinner === 'X' ? settings.playerXName : settings.playerOName} wins this round!
             </p>
           )}
 
@@ -387,10 +387,10 @@ function GameBoard({ settings, onBackToSettings }) {
             
             <div className="space-y-3 text-2xl">
               <p>
-                Player X: <span className="text-green-400 font-bold">{scores.X}</span>
+                {settings.playerXName} (X): <span className="text-green-400 font-bold">{scores.X}</span>
               </p>
               <p>
-                Player O: <span className="text-green-400 font-bold">{scores.O}</span>
+                {settings.playerOName} (O): <span className="text-green-400 font-bold">{scores.O}</span>
               </p>
               <p className="mt-6">
                 Rounds left: <span className="text-red-400 font-bold">{roundsLeft}</span> / {settings.maxRounds}
