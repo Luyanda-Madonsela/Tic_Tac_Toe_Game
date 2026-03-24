@@ -368,7 +368,7 @@ function GameBoard({ settings, onBackToSettings }) {
       </div>
 
       {/* Main Game Area */}
-      <div className="flex-1 flex justify-center items-start gap-6 px-8 pb-40 pl-[200px]">
+      <div className="flex-1 flex justify-center items-start gap-6 px-8 pb-40 pl-[100px]">
         {/* Left Side - Round Winner & Score Board */}
         <div className="flex flex-col items-start">
           {/* Round Winner Announcement */}
