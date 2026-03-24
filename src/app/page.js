@@ -358,15 +358,6 @@ function GameBoard({ settings, onBackToSettings }) {
         </h1>
       </div>
 
-      {/* Turn Indicator */}
-      <div className="text-center mb-4">
-        <p className="text-2xl md:text-3xl text-[#c44569] font-semibold">
-          {roundWinner 
-            ? (roundWinner === 'draw' ? "It's a Draw!" : `${roundWinner === 'X' ? settings.playerXName : settings.playerOName} wins this round!`)
-            : `${currentPlayerName}'s Turn`}
-        </p>
-      </div>
-
       {/* Main Game Area */}
       <div className="flex-1 flex justify-center items-start gap-6 px-8 pb-40 pr-[200px]">
         {/* Left Side - Round Winner & Score Board */}
