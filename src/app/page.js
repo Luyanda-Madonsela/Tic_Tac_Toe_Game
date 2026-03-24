@@ -421,15 +421,42 @@ function GameBoard({ settings, onBackToSettings }) {
                   style={{ fontFamily: 'var(--font-joti-one)' }}
                   whileTap={{ scale: 0.95 }}
                   whileHover={!cell && !roundWinner ? { scale: 1.05 } : {}}
+                  animate={isWinningCell ? {
+                    scale: [1, 1.1, 1],
+                    boxShadow: [
+                      "0 0 0 0 rgba(34, 197, 94, 0)",
+                      "0 0 20px 10px rgba(34, 197, 94, 0.5)",
+                      "0 0 0 0 rgba(34, 197, 94, 0)"
+                    ]
+                  } : {}}
+                  transition={isWinningCell ? {
+                    duration: 0.8,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  } : {}}
                 >
                   <AnimatePresence mode="wait">
                     {cell && (
                       <motion.span
                         key={cell}
                         initial={{ scale: 0, rotate: -180 }}
-                        animate={{ scale: 1, rotate: 0 }}
+                        animate={isWinningCell ? {
+                          scale: [1, 1.2, 1],
+                          rotate: 0
+                        } : { scale: 1, rotate: 0 }}
                         exit={{ scale: 0, rotate: 180 }}
-                        transition={{ 
+                        transition={isWinningCell ? {
+                          scale: {
+                            duration: 0.6,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          },
+                          rotate: {
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 20
+                          }
+                        } : { 
                           type: "spring", 
                           stiffness: 300, 
                           damping: 20 
