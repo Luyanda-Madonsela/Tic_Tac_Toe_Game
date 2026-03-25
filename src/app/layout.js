@@ -12,6 +12,11 @@ export const metadata = {
   description: "A classic Tic-Tac-Toe game with two-player and AI modes",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

@@ -125,9 +125,9 @@ function SettingsPage({ onStartGame, initialSettings }) {
       )}
 
       {/* Title */}
-      <div className="pt-12 pb-8 text-center">
+      <div className="pt-8 pb-6 text-center">
         <h1 
-          className="text-5xl md:text-6xl font-bold tracking-wide text-black"
+          className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-wide text-black"
           style={{ fontFamily: 'var(--font-joti-one)' }}
         >
           GAME SETTINGS
@@ -135,7 +135,7 @@ function SettingsPage({ onStartGame, initialSettings }) {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col items-center px-8 pb-40 max-w-lg mx-auto w-full">
+      <div className="flex-1 flex flex-col items-center px-4 sm:px-8 pb-40 max-w-lg mx-auto w-full">
         {/* Game Mode Selection */}
         <div className="mb-8 w-full">
           <p 
@@ -235,7 +235,7 @@ function SettingsPage({ onStartGame, initialSettings }) {
         <button
           data-testid="save-btn"
           onClick={handleSave}
-          className="bg-[#3a3a3a] text-white px-16 py-3 rounded-lg text-xl font-bold btn-3d mt-4"
+          className="bg-[#3a3a3a] text-white px-10 sm:px-16 py-3 rounded-lg text-xl font-bold btn-3d mt-4"
         >
           START GAME
         </button>
@@ -353,23 +353,13 @@ function GameBoard({ settings, onBackToSettings }) {
 
   return (
     <div className="min-h-screen bg-white flex flex-col relative" data-testid="game-board">
-      {/* Title */}
-      <div className="pt-8 pb-12 text-center">
-        <h1 
-          className="text-5xl md:text-7xl font-bold tracking-wide text-black"
-          style={{ fontFamily: 'var(--font-joti-one)' }}
-        >
-          Tic-Tac-Toe
-        </h1>
-      </div>
-
       {/* Main Game Area */}
-      <div className="flex-1 flex justify-center items-start gap-6 px-8 pb-40 pr-[200px]">
+      <div className="flex-1 flex flex-col lg:grid lg:grid-cols-[280px_auto_220px] xl:grid-cols-[360px_auto_240px] items-center lg:items-start justify-center gap-4 xl:gap-6 max-w-[1160px] xl:max-w-[1320px] mx-auto w-full px-4 sm:px-8 pt-6 pb-36 lg:pb-40 lg:-translate-x-12 xl:-translate-x-16">
         {/* Left Side - Round Winner & Score Board */}
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-center lg:items-start order-2 lg:order-1 w-full max-w-md lg:w-auto lg:mt-24 xl:mt-28">
           {/* Turn Indicator / Round Winner Announcement */}
           <p 
-            className="text-3xl text-green-500 mb-6 italic"
+            className="text-xl sm:text-2xl lg:text-2xl xl:text-3xl text-green-500 mb-4 lg:mb-4 xl:mb-6 italic text-center lg:text-left"
             style={{ fontFamily: 'var(--font-joti-one)' }}
             data-testid="turn-indicator"
           >
@@ -384,17 +374,17 @@ function GameBoard({ settings, onBackToSettings }) {
 
           {/* Score Board */}
           <div 
-            className="bg-[#2A2A2A] text-white p-8 rounded-3xl scoreboard-shadow min-w-[380px]"
+            className="bg-[#2A2A2A] text-white p-5 sm:p-6 lg:p-6 xl:p-8 rounded-3xl scoreboard-shadow w-full lg:min-w-[280px] xl:min-w-[360px]"
             data-testid="score-board"
           >
             <h2 
-              className="text-4xl font-bold mb-6 text-center"
+              className="text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-bold mb-3 lg:mb-4 xl:mb-6 text-center"
               style={{ fontFamily: 'var(--font-joti-one)' }}
             >
               SCORE BOARD
             </h2>
             
-            <div className="space-y-3 text-2xl">
+            <div className="space-y-2 text-lg sm:text-lg lg:text-lg xl:text-2xl">
               <p>
                 {settings.playerXName} (X): <span className="text-green-400 font-bold">{scores.X}</span>
               </p>
@@ -410,7 +400,7 @@ function GameBoard({ settings, onBackToSettings }) {
           {/* Final Game Result - Below Scoreboard */}
           {gameResult && (
             <motion.div 
-              className="mt-6 text-center" 
+              className="mt-4 lg:mt-6 text-center" 
               data-testid="game-result"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ 
@@ -423,7 +413,7 @@ function GameBoard({ settings, onBackToSettings }) {
               }}
             >
               <p 
-                className="text-3xl font-bold mb-3 text-red-500"
+                className="text-xl sm:text-2xl lg:text-2xl xl:text-3xl font-bold mb-3 text-red-500"
                 style={{ fontFamily: 'var(--font-joti-one)' }}
               >
                 {gameResult === 'draw' 
@@ -438,7 +428,14 @@ function GameBoard({ settings, onBackToSettings }) {
         </div>
 
         {/* Center - Game Grid */}
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center order-1 lg:order-2">
+          {/* Title - lives here so it's always above the board */}
+          <h1
+            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-wide text-black text-center mb-6 lg:mb-8"
+            style={{ fontFamily: 'var(--font-joti-one)' }}
+          >
+            Tic-Tac-Toe
+          </h1>
           <div className="grid grid-cols-3 gap-2" data-testid="game-grid" key={`grid-${gameKey}-${currentRound}`}>
             {board.map((cell, index) => {
               const isWinningCell = winningLine?.includes(index);
@@ -448,7 +445,7 @@ function GameBoard({ settings, onBackToSettings }) {
                   data-testid={`cell-${index}`}
                   onClick={() => handleCellClick(index)}
                   disabled={!!cell || !!roundWinner}
-                  className={`w-32 h-32 md:w-40 md:h-40 border-[6px] rounded-xl text-6xl md:text-8xl font-bold flex items-center justify-center game-cell
+                  className={`w-24 h-24 sm:w-28 sm:h-28 md:w-28 md:h-28 lg:w-24 lg:h-24 xl:w-32 xl:h-32 border-[4px] sm:border-[5px] lg:border-[4px] xl:border-[5px] rounded-xl text-5xl sm:text-5xl lg:text-4xl xl:text-6xl font-bold flex items-center justify-center game-cell
                     ${cell ? 'border-green-500' : 'border-black'}
                     ${cell === 'X' ? 'text-black' : ''}
                     ${cell === 'O' ? 'text-black' : ''}
@@ -513,7 +510,7 @@ function GameBoard({ settings, onBackToSettings }) {
             <button
               data-testid="play-again-btn"
               onClick={handlePlayAgain}
-              className="mt-8 bg-[#2A2A2A] text-white px-12 py-4 rounded-xl text-xl font-bold btn-3d"
+              className="mt-4 lg:mt-6 xl:mt-8 bg-[#2A2A2A] text-white px-6 sm:px-10 lg:px-8 py-3 rounded-xl text-base sm:text-lg xl:text-xl font-bold btn-3d"
             >
               {currentRound >= settings.maxRounds ? 'VIEW RESULTS' : 'NEXT ROUND'}
             </button>
@@ -524,7 +521,7 @@ function GameBoard({ settings, onBackToSettings }) {
             <button
               data-testid="new-game-btn"
               onClick={handleRestartGame}
-              className="mt-8 bg-[#2A2A2A] text-white px-12 py-4 rounded-xl text-xl font-bold btn-3d"
+              className="mt-4 lg:mt-6 xl:mt-8 bg-[#2A2A2A] text-white px-6 sm:px-10 lg:px-8 py-3 rounded-xl text-base sm:text-lg xl:text-xl font-bold btn-3d"
             >
               NEW GAME
             </button>
@@ -532,25 +529,25 @@ function GameBoard({ settings, onBackToSettings }) {
         </div>
 
         {/* Right Side - Control Buttons */}
-        <div className="flex flex-col gap-4 mt-20">
+        <div className="flex flex-row lg:flex-col lg:items-end gap-2 lg:gap-3 xl:gap-4 order-3 lg:order-3 lg:mt-40 xl:mt-44">
           <button
             data-testid="restart-game-btn"
             onClick={handleRestartGame}
-            className="bg-[#2A2A2A] text-white px-8 py-4 rounded-xl font-bold btn-3d text-lg whitespace-nowrap"
+            className="bg-[#2A2A2A] text-white px-3 sm:px-5 lg:w-52 xl:w-56 py-2 lg:py-3 rounded-xl font-bold btn-3d text-sm sm:text-sm lg:text-sm xl:text-lg whitespace-nowrap text-center"
           >
             RESTART GAME
           </button>
           <button
             data-testid="reset-board-btn"
             onClick={handleResetBoard}
-            className="bg-[#2A2A2A] text-white px-8 py-4 rounded-xl font-bold btn-3d text-lg whitespace-nowrap"
+            className="bg-[#2A2A2A] text-white px-3 sm:px-5 lg:w-52 xl:w-56 py-2 lg:py-3 rounded-xl font-bold btn-3d text-sm sm:text-sm lg:text-sm xl:text-lg whitespace-nowrap text-center"
           >
             RESET BOARD
           </button>
           <button
             data-testid="settings-btn"
             onClick={onBackToSettings}
-            className="bg-[#2A2A2A] text-white px-8 py-4 rounded-xl font-bold btn-3d text-lg whitespace-nowrap"
+            className="bg-[#2A2A2A] text-white px-3 sm:px-5 lg:w-52 xl:w-56 py-2 lg:py-3 rounded-xl font-bold btn-3d text-sm sm:text-sm lg:text-sm xl:text-lg whitespace-nowrap text-center"
           >
             SETTINGS
           </button>
