@@ -354,7 +354,7 @@ function GameBoard({ settings, onBackToSettings }) {
   return (
     <div className="min-h-screen bg-white flex flex-col relative" data-testid="game-board">
       {/* Main Game Area */}
-      <div className="flex-1 flex flex-col lg:grid lg:grid-cols-[280px_auto_220px] xl:grid-cols-[360px_auto_240px] items-center lg:items-start justify-center gap-4 xl:gap-6 max-w-[1160px] xl:max-w-[1320px] mx-auto w-full px-4 sm:px-8 pt-6 pb-36 lg:pb-40 lg:-translate-x-12 xl:-translate-x-16">
+      <div className="flex-1 flex flex-col lg:grid lg:grid-cols-[280px_auto_220px] xl:grid-cols-[360px_auto_240px] items-center lg:items-start justify-center gap-4 xl:gap-6 max-w-[1160px] xl:max-w-[1320px] mx-auto w-full px-4 sm:px-8 pt-6 lg:pt-14 xl:pt-20 pb-36 lg:pb-40 lg:-translate-x-12 xl:-translate-x-16">
         {/* Left Side - Round Winner & Score Board */}
         <div className="flex flex-col items-center lg:items-start order-2 lg:order-1 w-full max-w-md lg:w-auto lg:mt-24 xl:mt-28">
           {/* Turn Indicator / Round Winner Announcement */}

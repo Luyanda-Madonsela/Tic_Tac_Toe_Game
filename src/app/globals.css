@@ -91,3 +91,9 @@ body {
 .curved-bottom {
   border-radius: 50% 50% 0 0 / 20% 20% 0 0;
 }
+
+@media (max-width: 640px) {
+  .curved-bottom {
+    display: none !important;
+  }
+}
