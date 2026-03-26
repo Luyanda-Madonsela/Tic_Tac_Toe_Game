@@ -258,24 +258,6 @@ function GameBoard({ settings, onBackToSettings }) {
   const [roundWinner, setRoundWinner] = useState(null);
   const [gameKey, setGameKey] = useState(0); // Used to force re-render and reset animations
 
-  // Load scores from localStorage
-  useEffect(() => {
-    const savedScores = localStorage.getItem('ticTacToeScores');
-    if (savedScores) {
-      setScores(JSON.parse(savedScores));
-    }
-    const savedRound = localStorage.getItem('ticTacToeRound');
-    if (savedRound) {
-      setCurrentRound(parseInt(savedRound, 10));
-    }
-  }, []);
-
-  // Save scores to localStorage
-  useEffect(() => {
-    localStorage.setItem('ticTacToeScores', JSON.stringify(scores));
-    localStorage.setItem('ticTacToeRound', currentRound.toString());
-  }, [scores, currentRound]);
-
   // AI move
   useEffect(() => {
     if (settings.gameMode === MODES.VS_AI && !isXNext && !gameResult && !roundWinner) {
@@ -564,6 +546,7 @@ function GameBoard({ settings, onBackToSettings }) {
 export default function Home() {
   const [gameStarted, setGameStarted] = useState(false);
   const [settings, setSettings] = useState(null);
+  const [gameSessionId, setGameSessionId] = useState(0);
 
   // Load settings from localStorage on mount (only load settings, don't auto-start game)
   useEffect(() => {
@@ -578,7 +561,10 @@ export default function Home() {
   const handleStartGame = (newSettings) => {
     setSettings(newSettings);
     setGameStarted(true);
+    setGameSessionId(prev => prev + 1);
     localStorage.setItem('ticTacToeSettings', JSON.stringify(newSettings));
+    localStorage.removeItem('ticTacToeScores');
+    localStorage.removeItem('ticTacToeRound');
   };
 
   const handleBackToSettings = () => {
@@ -589,5 +575,5 @@ export default function Home() {
     return <SettingsPage onStartGame={handleStartGame} initialSettings={settings} />;
   }
 
-  return <GameBoard settings={settings} onBackToSettings={handleBackToSettings} />;
+  return <GameBoard key={gameSessionId} settings={settings} onBackToSettings={handleBackToSettings} />;
 }
